@@ -14,7 +14,7 @@
       --gold: #d6b25e;
       --gold-soft: rgba(214, 178, 94, 0.18);
       --border: rgba(255, 255, 255, 0.10);
-      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --shadow: none;
       --radius: 28px;
     }
 
@@ -27,7 +27,7 @@
       width: 100%;
       min-height: 100%;
       margin: 0;
-      background: var(--bg);
+      background: #191919 !important;
       overflow: hidden;
     }
 
@@ -37,7 +37,7 @@
     }
 
     .carousel-widget {
-      background: #191919;
+      background: #191919 !important;
       width: 100%;
       max-width: 1120px;
       height: 100vh;
@@ -54,10 +54,8 @@
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      background:
-        radial-gradient(circle at top left, rgba(214, 178, 94, 0.10), transparent 34%),
-        linear-gradient(145deg, #191919, #191919);
-      box-shadow: var(--shadow);
+      background: #191919;
+      box-shadow: none;
     }
 
     .carousel-track {
@@ -80,7 +78,7 @@
       min-height: 330px;
       border-radius: 24px;
       overflow: hidden;
-      background: linear-gradient(135deg, #2a2a2a, #191919);
+      background: #191919;
       border: 1px solid var(--border);
     }
 
@@ -102,9 +100,7 @@
       color: var(--muted);
       font-size: 14px;
       line-height: 1.5;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.04), transparent),
-        #171717;
+      background: #191919;
     }
 
     .content {
