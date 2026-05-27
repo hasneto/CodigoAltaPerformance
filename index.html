@@ -404,6 +404,154 @@
         height: 38px;
       }
     }
+
+
+    /* Ajuste forte para embeds do Notion no celular: evita corte superior/inferior */
+    @media (max-width: 760px) {
+      html,
+      body {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+        background: #191919 !important;
+      }
+
+      .carousel-widget {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        background: #191919 !important;
+      }
+
+      .carousel-shell {
+        width: 100% !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        background: #191919 !important;
+      }
+
+      .carousel-slide {
+        grid-template-columns: 1fr !important;
+        gap: 7px !important;
+        padding: 8px 12px 5px !important;
+      }
+
+      .photo-wrap {
+        height: 112px !important;
+        min-height: 0 !important;
+        border-radius: 14px !important;
+      }
+
+      .photo-wrap img {
+        object-fit: cover !important;
+        object-position: center 28% !important;
+      }
+
+      .content {
+        min-height: 0 !important;
+        justify-content: flex-start !important;
+      }
+
+      .eyebrow {
+        margin: 4px 0 6px !important;
+        padding: 5px 8px !important;
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+        letter-spacing: 0.07em !important;
+        white-space: normal !important;
+      }
+
+      h2 {
+        margin: 0 0 6px !important;
+        font-size: clamp(28px, 8.8vw, 36px) !important;
+        line-height: 0.98 !important;
+      }
+
+      .section {
+        margin-top: 6px !important;
+        padding: 8px 10px !important;
+        border-radius: 14px !important;
+      }
+
+      .section strong {
+        margin-bottom: 4px !important;
+        font-size: 11px !important;
+        line-height: 1.15 !important;
+      }
+
+      .section p {
+        font-size: 13px !important;
+        line-height: 1.24 !important;
+      }
+
+      .footer {
+        padding: 2px 12px 8px !important;
+      }
+
+      .dots {
+        gap: 5px !important;
+      }
+
+      .dot {
+        width: 6px !important;
+        height: 6px !important;
+      }
+
+      .dot.active {
+        width: 20px !important;
+      }
+
+      .counter {
+        font-size: 11px !important;
+      }
+
+      .nav-btn {
+        top: 58px !important;
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 22px !important;
+      }
+
+      .prev { left: 8px !important; }
+      .next { right: 8px !important; }
+    }
+
+    @media (max-width: 420px) {
+      .carousel-slide {
+        padding: 7px 10px 4px !important;
+      }
+
+      .photo-wrap {
+        height: 104px !important;
+      }
+
+      .eyebrow {
+        font-size: 8.5px !important;
+        padding: 4px 7px !important;
+      }
+
+      h2 {
+        font-size: clamp(26px, 8.2vw, 33px) !important;
+      }
+
+      .section {
+        padding: 7px 9px !important;
+      }
+
+      .section p {
+        font-size: 12.5px !important;
+        line-height: 1.22 !important;
+      }
+
+      .nav-btn {
+        top: 52px !important;
+        width: 34px !important;
+        height: 34px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
