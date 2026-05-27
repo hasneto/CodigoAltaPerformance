@@ -552,6 +552,118 @@
       }
     }
 
+
+    .status-section {
+      background: rgba(214, 178, 94, 0.075);
+      border-color: rgba(214, 178, 94, 0.24);
+    }
+
+    .relation-btn {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      border: 1px solid rgba(214, 178, 94, 0.44);
+      border-radius: 999px;
+      background: rgba(214, 178, 94, 0.12);
+      color: #f1cf78;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .relation-btn:hover {
+      background: rgba(214, 178, 94, 0.20);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.68);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: min(82vh, 680px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      background: #1f1f1f;
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.46);
+      padding: 24px;
+    }
+
+    .modal-card h3 {
+      margin: 0 0 10px;
+      color: #ffffff;
+      font-size: clamp(24px, 4vw, 34px);
+      line-height: 1.05;
+    }
+
+    .modal-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #f1cf78;
+      font-size: 14px;
+    }
+
+    .modal-card p {
+      margin: 0;
+      color: #d9d9d9;
+      font-size: 17px;
+      line-height: 1.62;
+    }
+
+    .modal-close {
+      margin-top: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #ffffff;
+      font-weight: 800;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 560px) {
+      .relation-btn {
+        margin-top: 7px !important;
+        padding: 7px 10px !important;
+        font-size: 10.5px !important;
+      }
+
+      .status-section {
+        display: block !important;
+      }
+
+      .modal-backdrop {
+        padding: 10px;
+      }
+
+      .modal-card {
+        max-height: 86vh;
+        border-radius: 18px;
+        padding: 16px;
+      }
+
+      .modal-card p {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -569,73 +681,105 @@
     </section>
   </main>
 
+  <div class="modal-backdrop" id="relationModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle"></h3>
+      <strong>Relação com o ebook</strong>
+      <p id="modalText"></p>
+      <button class="modal-close" type="button" id="modalClose">Fechar</button>
+    </div>
+  </div>
+
+
   <script>
     const testemunhos = [
   {
     "nome": "James Clear",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/james-clear.jpg",
-    "principio": "Hábitos pequenos, melhoria contínua e “1% melhor por dia”.",
-    "testemunho": "James Clear relata sua trajetória ligada aos hábitos, à tomada de decisão e à melhoria contínua. Também há registros sobre sua superação após uma lesão séria."
+    "principio": "Hábitos pequenos, melhoria contínua, identidade e evolução de 1% ao dia.",
+    "relacao": "James Clear é citado no ebook como referência para o tema dos hábitos, especialmente na ideia de que pequenas melhorias diárias geram grandes resultados ao longo do tempo. O PDF trabalha diretamente a lógica dos “juros compostos do autoaperfeiçoamento”, a melhoria de 1% ao dia, o contraste entre movimento e ação e a importância de construir sistemas, não apenas metas.",
+    "status": "Citado como fonte de produção e pesquisa do ebook.",
+    "testemunho": "James Clear representa a ideia de que grandes transformações não dependem de mudanças radicais, mas de pequenas ações repetidas com consistência. Sua trajetória e sua obra reforçam que hábitos são mecanismos de identidade: cada pequena escolha confirma o tipo de pessoa que alguém está se tornando."
   },
   {
     "nome": "Dave Brailsford",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/dave-brailsford.jpg",
-    "principio": "Agregação de ganhos marginais, ou seja, melhorar pequenos detalhes até gerar grande resultado.",
-    "testemunho": "O caso da British Cycling mostra como pequenas melhorias acumuladas foram aplicadas para alcançar desempenho de elite."
+    "principio": "Agregação de ganhos marginais: melhorar pequenos detalhes até gerar um resultado extraordinário.",
+    "relacao": "O princípio de Dave Brailsford está presente no capítulo sobre o poder do 1%, onde o ebook usa o caso do ciclismo britânico para mostrar como pequenas melhorias acumuladas podem produzir desempenho de elite. O próprio PDF registra Brailsford como treinador citado sobre a agregação de ganhos marginais no ciclismo britânico.",
+    "status": "Citado como fonte de produção e pesquisa do ebook.",
+    "testemunho": "Dave Brailsford ficou conhecido por aplicar a filosofia dos ganhos marginais à equipe britânica de ciclismo. A lógica era simples: melhorar 1% em várias áreas diferentes. Somadas, essas pequenas melhorias criaram uma vantagem competitiva enorme."
   },
   {
     "nome": "Mel Robbins",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/mel-robbins.jpg",
-    "principio": "Romper a procrastinação e agir antes que o cérebro racionalize a desistência.",
-    "testemunho": "Em sua palestra no TED, Mel Robbins apresenta a lógica de sair do piloto automático e agir rapidamente para quebrar padrões de hesitação."
+    "principio": "Romper a hesitação, vencer a procrastinação e agir antes que o cérebro racionalize a desistência.",
+    "relacao": "Mel Robbins não aparece como fonte citada no PDF. Porém, o princípio que ela representa está alinhado com o conteúdo do ebook, especialmente no capítulo sobre procrastinação, onde o texto ensina a parar de apenas planejar, transformar movimento em ação, reduzir tarefas ao primeiro passo e executar antes que a resistência mental cresça. O ebook trabalha a regra dos 2 minutos, o hábito de “aparecer” e a necessidade de começar mesmo antes de sentir motivação.",
+    "status": "Não citada como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Mel Robbins é conhecida por ensinar que a ação precisa começar antes que a mente crie desculpas. Seu testemunho reforça a ideia de interromper o piloto automático, agir rapidamente e quebrar padrões de hesitação."
   },
   {
     "nome": "Tim Ferriss",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/tim-ferriss.png",
-    "principio": "Clareza, eliminação, controle do medo e ação estratégica.",
-    "testemunho": "No exercício “Fear-Setting”, Tim Ferriss explica como lida com decisões difíceis, medo, risco e paralisia."
+    "principio": "Clareza, eliminação, foco, controle do medo e ação estratégica.",
+    "relacao": "Tim Ferriss é citado diretamente no PDF. O ebook usa suas ideias no contexto da ocupação improdutiva, da eliminação radical, da Lei de Parkinson e da necessidade de reduzir distrações para focar no que realmente produz resultado. O PDF também registra Ferriss na seção de autores citados, associado ao livro Trabalhe 4 Horas por Semana e à ideia de ocupação como forma de preguiça.",
+    "status": "Citado como fonte de produção e pesquisa do ebook.",
+    "testemunho": "Tim Ferriss representa a ideia de que produtividade não é fazer mais coisas, mas eliminar o que é irrelevante e concentrar energia no que gera maior impacto. Seu exercício de “Fear-Setting” também reforça a importância de enfrentar decisões difíceis com clareza e método."
   },
   {
     "nome": "Brené Brown",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/brene-brown.jpg",
-    "principio": "Vulnerabilidade como base de coragem, conexão e liderança humana.",
-    "testemunho": "Na palestra “The Power of Vulnerability”, Brené Brown compartilha como sua pesquisa a conduziu a uma jornada pessoal sobre vulnerabilidade e conexão."
+    "principio": "Vulnerabilidade como base de coragem, conexão, autenticidade e liderança humana.",
+    "relacao": "Brené Brown é citada na seção de autores e especialistas do PDF. O ebook trabalha o tema da vulnerabilidade principalmente na parte de liderança, mostrando que liderar não é sustentar uma imagem artificial de invulnerabilidade, mas criar confiança, conexão e humanidade. No PDF, Brené Brown aparece relacionada à ideia de que histórias são “dados com alma”.",
+    "status": "Citada como fonte de produção e pesquisa do ebook.",
+    "testemunho": "Brené Brown tornou-se referência mundial ao mostrar que vulnerabilidade não é fraqueza, mas coragem emocional. Sua pesquisa reforça que líderes mais humanos criam vínculos mais fortes, ambientes mais confiáveis e maior abertura para crescimento."
   },
   {
     "nome": "Eric Ries",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/eric-ries.jpg",
-    "principio": "Mentalidade enxuta, startup como experimento, construir, medir e aprender.",
-    "testemunho": "Em sua palestra sobre Lean Startup, Eric Ries explica a importância de tratar produtos, campanhas e recursos como experimentos para aprender rapidamente."
+    "principio": "Mentalidade enxuta, experimentação, MVP, validação rápida, construir, medir e aprender.",
+    "relacao": "Eric Ries é citado diretamente como fonte do ebook. O PDF registra A Startup Enxuta como obra citada sobre mentalidade enxuta e MVP. O conteúdo do ebook também trabalha o ciclo construir-medir-aprender, o uso de produto mínimo viável, a validação de hipóteses e a importância de testar ideias antes de investir tempo e recursos demais.",
+    "status": "Citado como fonte de produção e pesquisa do ebook.",
+    "testemunho": "Eric Ries representa a ideia de tratar negócios, produtos e projetos como experimentos. Em vez de apostar tudo em planos longos e rígidos, sua abordagem ensina a testar rapidamente, medir resultados reais e ajustar a rota com base em evidências."
   },
   {
     "nome": "Drew Houston",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/drew-houston.jpg",
     "principio": "MVP, validação antes de escalar, foco no usuário e aprendizagem rápida.",
-    "testemunho": "O fundador do Dropbox contou como aplicou princípios de Lean Startup usando feedback, vídeo demonstrativo e crescimento sem depender de marketing tradicional pesado."
+    "relacao": "Drew Houston não aparece como fonte citada no PDF. Porém, os princípios associados ao seu caso estão presentes no ebook por meio da mentalidade enxuta, do MVP e da validação de ideias. O ebook ensina que uma ideia deve ser transformada em experimento prático, testada com o público e ajustada com base no comportamento real das pessoas.",
+    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Drew Houston, fundador do Dropbox, é frequentemente lembrado pelo uso de uma demonstração simples para validar o interesse do público antes de construir uma estrutura completa. Seu caso ilustra bem o princípio de testar antes de escalar."
   },
   {
     "nome": "Brian Chesky",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/brian-chesky.png",
-    "principio": "Persistência, criatividade sob pressão, validação e execução em ambiente incerto.",
-    "testemunho": "A história do Airbnb vendendo caixas de cereal para sobreviver e chamar atenção de investidores é um exemplo de execução criativa diante da escassez."
+    "principio": "Persistência, criatividade sob pressão, validação em ambiente incerto e execução diante da escassez.",
+    "relacao": "Brian Chesky não aparece como fonte citada no PDF. No entanto, os princípios ligados à história do Airbnb se conectam com temas presentes no ebook, como execução prática, criatividade em cenários difíceis, validação de ideias, MVP e coragem para agir mesmo sem garantias.",
+    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Brian Chesky e a história inicial do Airbnb mostram como criatividade, persistência e validação prática podem sustentar uma ideia mesmo em períodos de escassez. O caso reforça a importância de agir, testar e adaptar a estratégia em vez de esperar o cenário perfeito."
   },
   {
     "nome": "Sara Blakely",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/sara-blakely.jpg",
-    "principio": "Ressignificação do fracasso, coragem para tentar e persistência empreendedora.",
-    "testemunho": "Em entrevistas, Sara Blakely relata como aprendeu desde cedo a enxergar o fracasso como tentativa e crescimento, e não como derrota final."
+    "principio": "Ressignificação do fracasso, coragem para tentar, persistência empreendedora e aprendizado contínuo.",
+    "relacao": "Sara Blakely não aparece como fonte citada no PDF. Porém, seus princípios dialogam com o ebook quando ele trata de ação, identidade, execução imperfeita, feedback e melhoria contínua. A ideia de enxergar falhas como parte do processo de crescimento combina com a lógica do ebook de transformar conhecimento em prática e ajustar o sistema até gerar resultado.",
+    "status": "Não citada como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Sara Blakely é um exemplo de como a relação com o fracasso pode mudar completamente a trajetória de uma pessoa. Em vez de interpretar a falha como derrota final, ela a apresenta como tentativa, aprendizado e etapa necessária do crescimento."
   },
   {
     "nome": "Jia Jiang",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/jia-jiang.jpg",
-    "principio": "Prática deliberada contra o medo, exposição ao desconforto e resiliência emocional.",
-    "testemunho": "Jia Jiang documentou a jornada “100 Days of Rejection”, buscando rejeições por 100 dias para dessensibilizar o medo e transformar rejeição em aprendizado."
+    "principio": "Exposição ao desconforto, prática deliberada contra o medo, resiliência emocional e superação da rejeição.",
+    "relacao": "Jia Jiang não aparece como fonte citada no PDF. Porém, seus princípios se relacionam com ideias presentes no ebook, especialmente autoconsciência, domínio emocional, feedback, desconforto produtivo e ação prática. O ebook trabalha a necessidade de agir apesar do medo, lidar melhor com emoções e transformar situações desconfortáveis em aprendizado.",
+    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Jia Jiang documentou a experiência dos “100 dias de rejeição”, buscando situações em que pudesse ouvir “não” de propósito. O objetivo era reduzir o medo da rejeição e transformar desconforto em treinamento emocional."
   },
   {
     "nome": "Matt Cutts",
     "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/matt-cutts.jpg",
-    "principio": "Desafio prático de curto prazo, formação de hábito e execução por ciclos.",
-    "testemunho": "Na palestra “Try something new for 30 days”, Matt Cutts relata como desafios de 30 dias ajudam a sair da inércia e construir novas experiências."
+    "principio": "Desafios práticos de curto prazo, formação de hábitos e execução por ciclos.",
+    "relacao": "Matt Cutts não aparece como fonte citada no PDF. Porém, o princípio dos desafios de curto prazo está alinhado com a proposta prática do ebook, especialmente no plano de ação de 21 dias, no checklist de alta performance, na formação de hábitos e na ideia de transformar conhecimento em execução. O PDF propõe semanas de limpeza, foco e consolidação de identidade, o que se conecta diretamente à lógica de desafios práticos por tempo determinado.",
+    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
+    "testemunho": "Matt Cutts popularizou a ideia de experimentar algo novo por 30 dias. Seu exemplo reforça que mudanças podem começar com ciclos curtos, simples e mensuráveis, capazes de tirar a pessoa da inércia e criar novas experiências."
   }
 ];
 
@@ -644,6 +788,10 @@
     const counter = document.getElementById("counter");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const relationModal = document.getElementById("relationModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalClose = document.getElementById("modalClose");
 
     let currentIndex = 0;
 
@@ -665,14 +813,21 @@
           <h2>${item.nome}</h2>
 
           <div class="section">
-            <strong>Princípio presentes no ebook</strong>
+            <strong>Princípio presente no ebook</strong>
             <p>${item.principio}</p>
+          </div>
+
+          <div class="section status-section">
+            <strong>Status no ebook</strong>
+            <p>${item.status}</p>
           </div>
 
           <div class="section">
             <strong>Seu testemunho</strong>
             <p>${item.testemunho}</p>
           </div>
+
+          <button class="relation-btn" type="button" data-index="${index}">Ver relação com o ebook</button>
         </div>
       `;
 
@@ -713,10 +868,38 @@
       updateCarousel();
     }
 
+
+    function openRelation(index) {
+      const item = testemunhos[index];
+      if (!item) return;
+      modalTitle.textContent = item.nome;
+      modalText.textContent = item.relacao;
+      relationModal.classList.add("open");
+      relationModal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeRelation() {
+      relationModal.classList.remove("open");
+      relationModal.setAttribute("aria-hidden", "true");
+    }
+
+    document.addEventListener("click", (event) => {
+      const relationButton = event.target.closest(".relation-btn");
+      if (relationButton) {
+        openRelation(Number(relationButton.dataset.index));
+        return;
+      }
+
+      if (event.target === relationModal || event.target === modalClose) {
+        closeRelation();
+      }
+    });
+
     prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
     nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
 
     document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeRelation();
       if (event.key === "ArrowLeft") goToSlide(currentIndex - 1);
       if (event.key === "ArrowRight") goToSlide(currentIndex + 1);
     });
