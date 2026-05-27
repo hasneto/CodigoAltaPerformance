@@ -664,6 +664,221 @@
       }
     }
 
+
+    /* =========================================================
+       AJUSTE FINAL: ALTURA AMPLIADA PARA NOTION
+       Mantém letras e imagens grandes. O conteúdo deixa de ser
+       comprimido para caber em iframe baixo.
+       ========================================================= */
+    html,
+    body {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 900px !important;
+      margin: 0 !important;
+      background: #191919 !important;
+      overflow-x: hidden !important;
+      overflow-y: visible !important;
+    }
+
+    .carousel-widget {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 900px !important;
+      max-width: 1280px !important;
+      margin: 0 auto !important;
+      padding: 56px 18px !important;
+      display: flex !important;
+      align-items: flex-start !important;
+      justify-content: center !important;
+      background: #191919 !important;
+    }
+
+    .carousel-shell {
+      width: 100% !important;
+      overflow: hidden !important;
+      background: #191919 !important;
+    }
+
+    .carousel-slide {
+      grid-template-columns: minmax(360px, 39%) 1fr !important;
+      gap: 36px !important;
+      padding: 44px 42px 34px !important;
+      align-items: stretch !important;
+    }
+
+    .photo-wrap,
+    .content {
+      min-height: 560px !important;
+    }
+
+    .content {
+      justify-content: center !important;
+    }
+
+    .footer {
+      padding: 0 42px 34px !important;
+    }
+
+    .nav-btn {
+      top: 50% !important;
+    }
+
+    @media (max-width: 760px) {
+      html,
+      body {
+        height: auto !important;
+        min-height: 1220px !important;
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+        background: #191919 !important;
+      }
+
+      .carousel-widget {
+        height: auto !important;
+        min-height: 1220px !important;
+        max-width: none !important;
+        padding: 34px 10px 44px !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        background: #191919 !important;
+      }
+
+      .carousel-shell {
+        border-radius: 22px !important;
+        overflow: hidden !important;
+        background: #191919 !important;
+      }
+
+      .carousel-slide {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+        padding: 28px 22px 18px !important;
+      }
+
+      .photo-wrap {
+        height: 330px !important;
+        min-height: 330px !important;
+        border-radius: 20px !important;
+      }
+
+      .photo-wrap img {
+        object-fit: cover !important;
+        object-position: center top !important;
+      }
+
+      .content {
+        min-height: auto !important;
+        justify-content: flex-start !important;
+      }
+
+      .eyebrow {
+        margin: 0 0 16px !important;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        line-height: 1.15 !important;
+        letter-spacing: 0.08em !important;
+      }
+
+      h2 {
+        margin: 0 0 16px !important;
+        font-size: clamp(42px, 12vw, 56px) !important;
+        line-height: 1 !important;
+      }
+
+      .section {
+        margin-top: 16px !important;
+        padding: 18px 18px !important;
+        border-radius: 22px !important;
+      }
+
+      .section strong {
+        margin-bottom: 9px !important;
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+      }
+
+      .section p {
+        font-size: 20px !important;
+        line-height: 1.48 !important;
+      }
+
+      .relation-btn {
+        margin-top: 18px !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+      }
+
+      .footer {
+        padding: 0 22px 24px !important;
+      }
+
+      .dots {
+        gap: 7px !important;
+      }
+
+      .dot {
+        width: 8px !important;
+        height: 8px !important;
+      }
+
+      .dot.active {
+        width: 26px !important;
+      }
+
+      .counter {
+        font-size: 13px !important;
+      }
+
+      .nav-btn {
+        top: 190px !important;
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 30px !important;
+      }
+
+      .prev { left: 12px !important; }
+      .next { right: 12px !important; }
+    }
+
+    @media (max-width: 420px) {
+      html,
+      body {
+        min-height: 1280px !important;
+      }
+
+      .carousel-widget {
+        min-height: 1280px !important;
+        padding: 30px 8px 42px !important;
+      }
+
+      .carousel-slide {
+        padding: 26px 20px 16px !important;
+      }
+
+      .photo-wrap {
+        height: 310px !important;
+        min-height: 310px !important;
+      }
+
+      .eyebrow {
+        font-size: 11px !important;
+      }
+
+      h2 {
+        font-size: clamp(40px, 11.5vw, 52px) !important;
+      }
+
+      .section p {
+        font-size: 19px !important;
+        line-height: 1.48 !important;
+      }
+
+      .nav-btn {
+        top: 176px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
