@@ -1,21 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrossel de Testemunhos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Referências Conceituais</title>
+
   <style>
     :root {
       --bg: #191919;
-      --card: #191919;
-      --card-2: #222222;
-      --text: #ffffff;
-      --muted: #cfcfcf;
       --gold: #d6b25e;
-      --gold-soft: rgba(214, 178, 94, 0.18);
-      --border: rgba(255, 255, 255, 0.10);
-      --shadow: none;
-      --radius: 28px;
+      --muted: #cfcfcf;
+      --line: rgba(255,255,255,.10);
     }
 
     * {
@@ -24,329 +19,249 @@
 
     html,
     body {
-      width: 100%;
-      min-height: 100%;
       margin: 0;
       background: #191919 !important;
       overflow: hidden;
-    }
-
-    body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
+      color: #fff;
     }
 
-    .carousel-widget {
-      background: #191919 !important;
-      width: 100%;
-      max-width: 1120px;
-      height: 100vh;
-      margin: 0 auto;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .carousel-shell {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+    .wrap {
+      max-width: 1080px;
+      margin: auto;
+      padding: 16px 10px;
       background: #191919;
-      box-shadow: none;
     }
 
-    .carousel-track {
+    .shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #191919;
+    }
+
+    .track {
       display: flex;
-      transition: transform 420ms ease;
-      will-change: transform;
+      transition: .4s transform;
     }
 
-    .carousel-slide {
+    .slide {
       min-width: 100%;
+      padding: 30px 42px 24px;
+    }
+
+    .grid {
       display: grid;
-      grid-template-columns: minmax(230px, 38%) 1fr;
-      gap: 26px;
-      align-items: stretch;
-      padding: 28px 34px 24px;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: center;
     }
 
-    .photo-wrap {
-      position: relative;
-      min-height: 330px;
-      border-radius: 24px;
-      overflow: hidden;
-      background: #191919;
-      border: 1px solid var(--border);
+    .main {
+      border: 1px solid rgba(214,178,94,.30);
+      background: linear-gradient(135deg, rgba(214,178,94,.13), rgba(255,255,255,.035));
+      border-radius: 20px;
+      padding: 24px;
     }
 
-    .photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.92) contrast(1.04);
-    }
-
-    .photo-fallback {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      padding: 22px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-      background: #191919;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 330px;
-    }
-
-    .eyebrow {
-      width: fit-content;
-      margin: 0 0 14px;
+    .tag {
+      display: inline-block;
+      margin: 0 0 12px;
       padding: 7px 11px;
-      border: 1px solid rgba(214, 178, 94, 0.35);
+      border: 1px solid rgba(214,178,94,.35);
       border-radius: 999px;
-      background: var(--gold-soft);
+      background: rgba(214,178,94,.13);
       color: #f4d98c;
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-weight: 800;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
     h2 {
-      margin: 0 0 14px;
-      font-size: clamp(30px, 5vw, 50px);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.04;
+      letter-spacing: -.04em;
     }
 
-    .section {
-      margin-top: 14px;
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid var(--border);
-    }
-
-    .section strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #f1cf78;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-    }
-
-    .section p {
+    p {
       margin: 0;
       color: var(--muted);
-      font-size: clamp(15px, 2vw, 18px);
-      line-height: 1.58;
+      font-size: clamp(16px, 1.8vw, 20px);
+      line-height: 1.52;
     }
 
-    .nav-btn {
+    .side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .chip {
+      width: max-content;
+      max-width: 100%;
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #aaa;
+      background: rgba(255,255,255,.04);
+      font-size: 12px;
+    }
+
+    .chip b {
+      color: #d4d4d4;
+    }
+
+    .box {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.045);
+      padding: 15px;
+    }
+
+    .box b {
+      display: block;
+      color: #f1cf78;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      margin-bottom: 6px;
+    }
+
+    .box p {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .note {
+      color: #999;
+      font-size: 12px;
+      line-height: 1.4;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 5;
-      width: 46px;
-      height: 46px;
-      border: 1px solid var(--border);
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: rgba(17, 17, 17, 0.72);
-      color: white;
+      border: 1px solid var(--line);
+      background: rgba(17,17,17,.76);
+      color: #fff;
+      font-size: 25px;
       cursor: pointer;
       display: grid;
       place-items: center;
-      font-size: 26px;
-      line-height: 1;
-      backdrop-filter: blur(10px);
-      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      z-index: 5;
     }
 
-    .nav-btn:hover {
-      transform: translateY(-50%) scale(1.05);
-      background: rgba(214, 178, 94, 0.20);
-      border-color: rgba(214, 178, 94, 0.50);
+    .prev {
+      left: 10px;
     }
 
-    .prev { left: 18px; }
-    .next { right: 18px; }
+    .next {
+      right: 10px;
+    }
 
-    .footer {
+    .foot {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 0 34px 22px;
+      align-items: center;
+      padding: 0 42px 20px;
     }
 
     .dots {
       display: flex;
-      gap: 8px;
+      gap: 7px;
       flex-wrap: wrap;
     }
 
     .dot {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border: 0;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.25);
+      border-radius: 99px;
+      background: rgba(255,255,255,.25);
       cursor: pointer;
       padding: 0;
-      transition: width 220ms ease, background 220ms ease;
     }
 
-    .dot.active {
-      width: 28px;
+    .dot.on {
+      width: 26px;
       background: var(--gold);
     }
 
-    .counter {
-      color: var(--muted);
+    .count {
       font-size: 13px;
+      color: #999;
       white-space: nowrap;
     }
 
-    @media (max-height: 560px) and (min-width: 761px) {
-      .carousel-widget {
-        padding: 8px;
-      }
-
-      .carousel-slide {
-        padding: 22px 30px 18px;
-      }
-
-      .photo-wrap,
-      .content {
-        min-height: 290px;
-      }
-
-      .eyebrow {
-        margin-bottom: 10px;
-        padding: 6px 10px;
-      }
-
-      h2 {
-        margin-bottom: 10px;
-        font-size: clamp(28px, 4.4vw, 44px);
-      }
-
-      .section {
-        margin-top: 10px;
-        padding: 13px 15px;
-      }
-
-      .section p {
-        font-size: 16px;
-        line-height: 1.45;
-      }
-
-      .footer {
-        padding-bottom: 16px;
-      }
-    }
-
     @media (max-width: 760px) {
-      html,
-      body {
-        min-height: 0;
-        overflow: hidden;
-        background: #191919 !important;
+      .wrap {
+        padding: 8px 6px;
       }
 
-      .carousel-widget {
-        height: 100vh;
-        max-width: none;
-        padding: 0 8px;
-        align-items: center;
-        background: #191919 !important;
+      .slide {
+        padding: 18px 14px 14px;
       }
 
-      .carousel-shell {
-        border-radius: 20px;
-      }
-
-      .carousel-slide {
+      .grid {
         grid-template-columns: 1fr;
-        gap: 10px;
-        padding: 12px 16px 10px;
+        gap: 12px;
       }
 
-      .photo-wrap {
-        min-height: 0;
-        height: clamp(150px, 29vh, 210px);
-        border-radius: 18px;
-      }
-
-      .photo-wrap img {
-        object-fit: contain;
-        object-position: center top;
-        background: #191919;
-      }
-
-      .content {
-        min-height: auto;
-      }
-
-      .eyebrow {
-        margin-bottom: 8px;
-        padding: 6px 10px;
-        font-size: 10px;
-        letter-spacing: 0.075em;
-      }
-
-      h2 {
-        margin-bottom: 8px;
-        font-size: clamp(34px, 11vw, 48px);
-        line-height: 1;
-      }
-
-      .section {
-        margin-top: 8px;
-        padding: 11px 13px;
+      .main {
+        padding: 16px;
         border-radius: 17px;
       }
 
-      .section strong {
-        margin-bottom: 6px;
-        font-size: 12px;
+      .tag {
+        font-size: 10px;
+        padding: 6px 9px;
       }
 
-      .section p {
-        font-size: clamp(14px, 4vw, 16px);
-        line-height: 1.38;
+      h2 {
+        font-size: clamp(27px, 8vw, 38px);
       }
 
-      .nav-btn {
-        top: clamp(87px, 15vh, 117px);
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
+      p {
+        font-size: 15px;
+        line-height: 1.42;
       }
 
-      .prev { left: 8px; }
-      .next { right: 8px; }
-
-      .footer {
-        padding: 0 16px 12px;
-        align-items: center;
-        flex-direction: row;
+      .box {
+        padding: 12px;
       }
 
-      .dots {
-        gap: 6px;
+      .box p {
+        font-size: 13.5px;
+      }
+
+      .note {
+        font-size: 10.5px;
+      }
+
+      .btn {
+        width: 36px;
+        height: 36px;
+        font-size: 23px;
+      }
+
+      .prev {
+        left: 5px;
+      }
+
+      .next {
+        right: 5px;
+      }
+
+      .foot {
+        padding: 0 14px 12px;
       }
 
       .dot {
@@ -354,789 +269,178 @@
         height: 7px;
       }
 
-      .dot.active {
+      .dot.on {
         width: 22px;
       }
     }
-
-    @media (max-width: 420px) {
-      .carousel-widget {
-        padding: 0 6px;
-      }
-
-      .carousel-slide {
-        padding: 10px 14px 8px;
-        gap: 8px;
-      }
-
-      .photo-wrap {
-        height: clamp(125px, 24vh, 180px);
-      }
-
-      .eyebrow {
-        font-size: 9px;
-        padding: 5px 8px;
-        margin-bottom: 7px;
-      }
-
-      h2 {
-        font-size: clamp(30px, 10vw, 40px);
-        margin-bottom: 6px;
-      }
-
-      .section {
-        margin-top: 7px;
-        padding: 10px 12px;
-      }
-
-      .section p {
-        font-size: 14px;
-        line-height: 1.34;
-      }
-
-      .footer {
-        padding: 0 14px 10px;
-      }
-
-      .nav-btn {
-        top: clamp(72px, 13vh, 100px);
-        width: 38px;
-        height: 38px;
-      }
-    }
-
-
-    /* Ajuste forte para embeds do Notion no celular: evita corte superior/inferior */
-    @media (max-width: 760px) {
-      html,
-      body {
-        height: auto !important;
-        min-height: 0 !important;
-        overflow: hidden !important;
-        background: #191919 !important;
-      }
-
-      .carousel-widget {
-        height: auto !important;
-        min-height: 0 !important;
-        padding: 0 !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        background: #191919 !important;
-      }
-
-      .carousel-shell {
-        width: 100% !important;
-        border-radius: 16px !important;
-        overflow: hidden !important;
-        background: #191919 !important;
-      }
-
-      .carousel-slide {
-        grid-template-columns: 1fr !important;
-        gap: 7px !important;
-        padding: 8px 12px 5px !important;
-      }
-
-      .photo-wrap {
-        height: 112px !important;
-        min-height: 0 !important;
-        border-radius: 14px !important;
-      }
-
-      .photo-wrap img {
-        object-fit: cover !important;
-        object-position: center 28% !important;
-      }
-
-      .content {
-        min-height: 0 !important;
-        justify-content: flex-start !important;
-      }
-
-      .eyebrow {
-        margin: 4px 0 6px !important;
-        padding: 5px 8px !important;
-        font-size: 9px !important;
-        line-height: 1.1 !important;
-        letter-spacing: 0.07em !important;
-        white-space: normal !important;
-      }
-
-      h2 {
-        margin: 0 0 6px !important;
-        font-size: clamp(28px, 8.8vw, 36px) !important;
-        line-height: 0.98 !important;
-      }
-
-      .section {
-        margin-top: 6px !important;
-        padding: 8px 10px !important;
-        border-radius: 14px !important;
-      }
-
-      .section strong {
-        margin-bottom: 4px !important;
-        font-size: 11px !important;
-        line-height: 1.15 !important;
-      }
-
-      .section p {
-        font-size: 13px !important;
-        line-height: 1.24 !important;
-      }
-
-      .footer {
-        padding: 2px 12px 8px !important;
-      }
-
-      .dots {
-        gap: 5px !important;
-      }
-
-      .dot {
-        width: 6px !important;
-        height: 6px !important;
-      }
-
-      .dot.active {
-        width: 20px !important;
-      }
-
-      .counter {
-        font-size: 11px !important;
-      }
-
-      .nav-btn {
-        top: 58px !important;
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 22px !important;
-      }
-
-      .prev { left: 8px !important; }
-      .next { right: 8px !important; }
-    }
-
-    @media (max-width: 420px) {
-      .carousel-slide {
-        padding: 7px 10px 4px !important;
-      }
-
-      .photo-wrap {
-        height: 104px !important;
-      }
-
-      .eyebrow {
-        font-size: 8.5px !important;
-        padding: 4px 7px !important;
-      }
-
-      h2 {
-        font-size: clamp(26px, 8.2vw, 33px) !important;
-      }
-
-      .section {
-        padding: 7px 9px !important;
-      }
-
-      .section p {
-        font-size: 12.5px !important;
-        line-height: 1.22 !important;
-      }
-
-      .nav-btn {
-        top: 52px !important;
-        width: 34px !important;
-        height: 34px !important;
-      }
-    }
-
-
-    .status-section {
-      background: rgba(214, 178, 94, 0.075);
-      border-color: rgba(214, 178, 94, 0.24);
-    }
-
-    .relation-btn {
-      margin-top: 12px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      border: 1px solid rgba(214, 178, 94, 0.44);
-      border-radius: 999px;
-      background: rgba(214, 178, 94, 0.12);
-      color: #f1cf78;
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: 0.02em;
-      padding: 10px 14px;
-      cursor: pointer;
-    }
-
-    .relation-btn:hover {
-      background: rgba(214, 178, 94, 0.20);
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0, 0, 0, 0.68);
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-card {
-      width: min(760px, 100%);
-      max-height: min(82vh, 680px);
-      overflow: auto;
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 24px;
-      background: #1f1f1f;
-      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.46);
-      padding: 24px;
-    }
-
-    .modal-card h3 {
-      margin: 0 0 10px;
-      color: #ffffff;
-      font-size: clamp(24px, 4vw, 34px);
-      line-height: 1.05;
-    }
-
-    .modal-card strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #f1cf78;
-      font-size: 14px;
-    }
-
-    .modal-card p {
-      margin: 0;
-      color: #d9d9d9;
-      font-size: 17px;
-      line-height: 1.62;
-    }
-
-    .modal-close {
-      margin-top: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.07);
-      color: #ffffff;
-      font-weight: 800;
-      padding: 10px 16px;
-      cursor: pointer;
-    }
-
-    @media (max-width: 560px) {
-      .relation-btn {
-        margin-top: 7px !important;
-        padding: 7px 10px !important;
-        font-size: 10.5px !important;
-      }
-
-      .status-section {
-        display: block !important;
-      }
-
-      .modal-backdrop {
-        padding: 10px;
-      }
-
-      .modal-card {
-        max-height: 86vh;
-        border-radius: 18px;
-        padding: 16px;
-      }
-
-      .modal-card p {
-        font-size: 14px;
-        line-height: 1.5;
-      }
-    }
-
-
-    /* =========================================================
-       AJUSTE FINAL: ALTURA AMPLIADA PARA NOTION
-       Mantém letras e imagens grandes. O conteúdo deixa de ser
-       comprimido para caber em iframe baixo.
-       ========================================================= */
-    html,
-    body {
-      width: 100% !important;
-      height: auto !important;
-      min-height: 900px !important;
-      margin: 0 !important;
-      background: #191919 !important;
-      overflow-x: hidden !important;
-      overflow-y: visible !important;
-    }
-
-    .carousel-widget {
-      width: 100% !important;
-      height: auto !important;
-      min-height: 900px !important;
-      max-width: 1280px !important;
-      margin: 0 auto !important;
-      padding: 56px 18px !important;
-      display: flex !important;
-      align-items: flex-start !important;
-      justify-content: center !important;
-      background: #191919 !important;
-    }
-
-    .carousel-shell {
-      width: 100% !important;
-      overflow: hidden !important;
-      background: #191919 !important;
-    }
-
-    .carousel-slide {
-      grid-template-columns: minmax(360px, 39%) 1fr !important;
-      gap: 36px !important;
-      padding: 44px 42px 34px !important;
-      align-items: stretch !important;
-    }
-
-    .photo-wrap,
-    .content {
-      min-height: 560px !important;
-    }
-
-    .content {
-      justify-content: center !important;
-    }
-
-    .footer {
-      padding: 0 42px 34px !important;
-    }
-
-    .nav-btn {
-      top: 50% !important;
-    }
-
-    @media (max-width: 760px) {
-      html,
-      body {
-        height: auto !important;
-        min-height: 1220px !important;
-        overflow-x: hidden !important;
-        overflow-y: visible !important;
-        background: #191919 !important;
-      }
-
-      .carousel-widget {
-        height: auto !important;
-        min-height: 1220px !important;
-        max-width: none !important;
-        padding: 34px 10px 44px !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        background: #191919 !important;
-      }
-
-      .carousel-shell {
-        border-radius: 22px !important;
-        overflow: hidden !important;
-        background: #191919 !important;
-      }
-
-      .carousel-slide {
-        grid-template-columns: 1fr !important;
-        gap: 18px !important;
-        padding: 28px 22px 18px !important;
-      }
-
-      .photo-wrap {
-        height: 330px !important;
-        min-height: 330px !important;
-        border-radius: 20px !important;
-      }
-
-      .photo-wrap img {
-        object-fit: cover !important;
-        object-position: center top !important;
-      }
-
-      .content {
-        min-height: auto !important;
-        justify-content: flex-start !important;
-      }
-
-      .eyebrow {
-        margin: 0 0 16px !important;
-        padding: 8px 12px !important;
-        font-size: 12px !important;
-        line-height: 1.15 !important;
-        letter-spacing: 0.08em !important;
-      }
-
-      h2 {
-        margin: 0 0 16px !important;
-        font-size: clamp(42px, 12vw, 56px) !important;
-        line-height: 1 !important;
-      }
-
-      .section {
-        margin-top: 16px !important;
-        padding: 18px 18px !important;
-        border-radius: 22px !important;
-      }
-
-      .section strong {
-        margin-bottom: 9px !important;
-        font-size: 16px !important;
-        line-height: 1.2 !important;
-      }
-
-      .section p {
-        font-size: 20px !important;
-        line-height: 1.48 !important;
-      }
-
-      .relation-btn {
-        margin-top: 18px !important;
-        padding: 12px 16px !important;
-        font-size: 14px !important;
-      }
-
-      .footer {
-        padding: 0 22px 24px !important;
-      }
-
-      .dots {
-        gap: 7px !important;
-      }
-
-      .dot {
-        width: 8px !important;
-        height: 8px !important;
-      }
-
-      .dot.active {
-        width: 26px !important;
-      }
-
-      .counter {
-        font-size: 13px !important;
-      }
-
-      .nav-btn {
-        top: 190px !important;
-        width: 48px !important;
-        height: 48px !important;
-        font-size: 30px !important;
-      }
-
-      .prev { left: 12px !important; }
-      .next { right: 12px !important; }
-    }
-
-    @media (max-width: 420px) {
-      html,
-      body {
-        min-height: 1280px !important;
-      }
-
-      .carousel-widget {
-        min-height: 1280px !important;
-        padding: 30px 8px 42px !important;
-      }
-
-      .carousel-slide {
-        padding: 26px 20px 16px !important;
-      }
-
-      .photo-wrap {
-        height: 310px !important;
-        min-height: 310px !important;
-      }
-
-      .eyebrow {
-        font-size: 11px !important;
-      }
-
-      h2 {
-        font-size: clamp(40px, 11.5vw, 52px) !important;
-      }
-
-      .section p {
-        font-size: 19px !important;
-        line-height: 1.48 !important;
-      }
-
-      .nav-btn {
-        top: 176px !important;
-      }
-    }
-
   </style>
 </head>
+
 <body>
-  <main class="carousel-widget" aria-label="Carrossel de testemunhos">
-    <section class="carousel-shell">
-      <div class="carousel-track" id="carouselTrack"></div>
+  <main class="wrap">
+    <section class="shell">
+      <div class="track" id="track"></div>
 
-      <button class="nav-btn prev" type="button" aria-label="Anterior" id="prevBtn">‹</button>
-      <button class="nav-btn next" type="button" aria-label="Próximo" id="nextBtn">›</button>
+      <button class="btn prev" id="prev" type="button" aria-label="Referência anterior">‹</button>
+      <button class="btn next" id="next" type="button" aria-label="Próxima referência">›</button>
 
-      <div class="footer">
-        <div class="dots" id="dots" aria-label="Navegação do carrossel"></div>
-        <div class="counter" id="counter"></div>
+      <div class="foot">
+        <div class="dots" id="dots"></div>
+        <div class="count" id="count"></div>
       </div>
     </section>
   </main>
 
-  <div class="modal-backdrop" id="relationModal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h3 id="modalTitle"></h3>
-      <strong>Relação com o ebook</strong>
-      <p id="modalText"></p>
-      <button class="modal-close" type="button" id="modalClose">Fechar</button>
-    </div>
-  </div>
-
-
   <script>
-    const testemunhos = [
-  {
-    "nome": "James Clear",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/james-clear.jpg",
-    "principio": "Hábitos pequenos, melhoria contínua, identidade e evolução de 1% ao dia.",
-    "relacao": "James Clear é citado no ebook como referência para o tema dos hábitos, especialmente na ideia de que pequenas melhorias diárias geram grandes resultados ao longo do tempo. O PDF trabalha diretamente a lógica dos “juros compostos do autoaperfeiçoamento”, a melhoria de 1% ao dia, o contraste entre movimento e ação e a importância de construir sistemas, não apenas metas.",
-    "status": "Citado como fonte de produção e pesquisa do ebook.",
-    "testemunho": "James Clear representa a ideia de que grandes transformações não dependem de mudanças radicais, mas de pequenas ações repetidas com consistência. Sua trajetória e sua obra reforçam que hábitos são mecanismos de identidade: cada pequena escolha confirma o tipo de pessoa que alguém está se tornando."
-  },
-  {
-    "nome": "Dave Brailsford",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/dave-brailsford.jpg",
-    "principio": "Agregação de ganhos marginais: melhorar pequenos detalhes até gerar um resultado extraordinário.",
-    "relacao": "O princípio de Dave Brailsford está presente no capítulo sobre o poder do 1%, onde o ebook usa o caso do ciclismo britânico para mostrar como pequenas melhorias acumuladas podem produzir desempenho de elite. O próprio PDF registra Brailsford como treinador citado sobre a agregação de ganhos marginais no ciclismo britânico.",
-    "status": "Citado como fonte de produção e pesquisa do ebook.",
-    "testemunho": "Dave Brailsford ficou conhecido por aplicar a filosofia dos ganhos marginais à equipe britânica de ciclismo. A lógica era simples: melhorar 1% em várias áreas diferentes. Somadas, essas pequenas melhorias criaram uma vantagem competitiva enorme."
-  },
-  {
-    "nome": "Mel Robbins",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/mel-robbins.jpg",
-    "principio": "Romper a hesitação, vencer a procrastinação e agir antes que o cérebro racionalize a desistência.",
-    "relacao": "Mel Robbins não aparece como fonte citada no PDF. Porém, o princípio que ela representa está alinhado com o conteúdo do ebook, especialmente no capítulo sobre procrastinação, onde o texto ensina a parar de apenas planejar, transformar movimento em ação, reduzir tarefas ao primeiro passo e executar antes que a resistência mental cresça. O ebook trabalha a regra dos 2 minutos, o hábito de “aparecer” e a necessidade de começar mesmo antes de sentir motivação.",
-    "status": "Não citada como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Mel Robbins é conhecida por ensinar que a ação precisa começar antes que a mente crie desculpas. Quem é? reforça a ideia de interromper o piloto automático, agir rapidamente e quebrar padrões de hesitação."
-  },
-  {
-    "nome": "Tim Ferriss",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/tim-ferriss.png",
-    "principio": "Clareza, eliminação, foco, controle do medo e ação estratégica.",
-    "relacao": "Tim Ferriss é citado diretamente no PDF. O ebook usa suas ideias no contexto da ocupação improdutiva, da eliminação radical, da Lei de Parkinson e da necessidade de reduzir distrações para focar no que realmente produz resultado. O PDF também registra Ferriss na seção de autores citados, associado ao livro Trabalhe 4 Horas por Semana e à ideia de ocupação como forma de preguiça.",
-    "status": "Citado como fonte de produção e pesquisa do ebook.",
-    "testemunho": "Tim Ferriss representa a ideia de que produtividade não é fazer mais coisas, mas eliminar o que é irrelevante e concentrar energia no que gera maior impacto. Seu exercício de “Fear-Setting” também reforça a importância de enfrentar decisões difíceis com clareza e método."
-  },
-  {
-    "nome": "Brené Brown",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/brene-brown.jpg",
-    "principio": "Vulnerabilidade como base de coragem, conexão, autenticidade e liderança humana.",
-    "relacao": "Brené Brown é citada na seção de autores e especialistas do PDF. O ebook trabalha o tema da vulnerabilidade principalmente na parte de liderança, mostrando que liderar não é sustentar uma imagem artificial de invulnerabilidade, mas criar confiança, conexão e humanidade. No PDF, Brené Brown aparece relacionada à ideia de que histórias são “dados com alma”.",
-    "status": "Citada como fonte de produção e pesquisa do ebook.",
-    "testemunho": "Brené Brown tornou-se referência mundial ao mostrar que vulnerabilidade não é fraqueza, mas coragem emocional. Sua pesquisa reforça que líderes mais humanos criam vínculos mais fortes, ambientes mais confiáveis e maior abertura para crescimento."
-  },
-  {
-    "nome": "Eric Ries",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/eric-ries.jpg",
-    "principio": "Mentalidade enxuta, experimentação, MVP, validação rápida, construir, medir e aprender.",
-    "relacao": "Eric Ries é citado diretamente como fonte do ebook. O PDF registra A Startup Enxuta como obra citada sobre mentalidade enxuta e MVP. O conteúdo do ebook também trabalha o ciclo construir-medir-aprender, o uso de produto mínimo viável, a validação de hipóteses e a importância de testar ideias antes de investir tempo e recursos demais.",
-    "status": "Citado como fonte de produção e pesquisa do ebook.",
-    "testemunho": "Eric Ries representa a ideia de tratar negócios, produtos e projetos como experimentos. Em vez de apostar tudo em planos longos e rígidos, sua abordagem ensina a testar rapidamente, medir resultados reais e ajustar a rota com base em evidências."
-  },
-  {
-    "nome": "Drew Houston",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/drew-houston.jpg",
-    "principio": "MVP, validação antes de escalar, foco no usuário e aprendizagem rápida.",
-    "relacao": "Drew Houston não aparece como fonte citada no PDF. Porém, os princípios associados ao seu caso estão presentes no ebook por meio da mentalidade enxuta, do MVP e da validação de ideias. O ebook ensina que uma ideia deve ser transformada em experimento prático, testada com o público e ajustada com base no comportamento real das pessoas.",
-    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Drew Houston, fundador do Dropbox, é frequentemente lembrado pelo uso de uma demonstração simples para validar o interesse do público antes de construir uma estrutura completa. Seu caso ilustra bem o princípio de testar antes de escalar."
-  },
-  {
-    "nome": "Brian Chesky",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/brian-chesky.png",
-    "principio": "Persistência, criatividade sob pressão, validação em ambiente incerto e execução diante da escassez.",
-    "relacao": "Brian Chesky não aparece como fonte citada no PDF. No entanto, os princípios ligados à história do Airbnb se conectam com temas presentes no ebook, como execução prática, criatividade em cenários difíceis, validação de ideias, MVP e coragem para agir mesmo sem garantias.",
-    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Brian Chesky e a história inicial do Airbnb mostram como criatividade, persistência e validação prática podem sustentar uma ideia mesmo em períodos de escassez. O caso reforça a importância de agir, testar e adaptar a estratégia em vez de esperar o cenário perfeito."
-  },
-  {
-    "nome": "Sara Blakely",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/sara-blakely.jpg",
-    "principio": "Ressignificação do fracasso, coragem para tentar, persistência empreendedora e aprendizado contínuo.",
-    "relacao": "Sara Blakely não aparece como fonte citada no PDF. Porém, seus princípios dialogam com o ebook quando ele trata de ação, identidade, execução imperfeita, feedback e melhoria contínua. A ideia de enxergar falhas como parte do processo de crescimento combina com a lógica do ebook de transformar conhecimento em prática e ajustar o sistema até gerar resultado.",
-    "status": "Não citada como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Sara Blakely é um exemplo de como a relação com o fracasso pode mudar completamente a trajetória de uma pessoa. Em vez de interpretar a falha como derrota final, ela a apresenta como tentativa, aprendizado e etapa necessária do crescimento."
-  },
-  {
-    "nome": "Jia Jiang",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/jia-jiang.jpg",
-    "principio": "Exposição ao desconforto, prática deliberada contra o medo, resiliência emocional e superação da rejeição.",
-    "relacao": "Jia Jiang não aparece como fonte citada no PDF. Porém, seus princípios se relacionam com ideias presentes no ebook, especialmente autoconsciência, domínio emocional, feedback, desconforto produtivo e ação prática. O ebook trabalha a necessidade de agir apesar do medo, lidar melhor com emoções e transformar situações desconfortáveis em aprendizado.",
-    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Jia Jiang documentou a experiência dos “100 dias de rejeição”, buscando situações em que pudesse ouvir “não” de propósito. O objetivo era reduzir o medo da rejeição e transformar desconforto em treinamento emocional."
-  },
-  {
-    "nome": "Matt Cutts",
-    "imagem": "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/matt-cutts.jpg",
-    "principio": "Desafios práticos de curto prazo, formação de hábitos e execução por ciclos.",
-    "relacao": "Matt Cutts não aparece como fonte citada no PDF. Porém, o princípio dos desafios de curto prazo está alinhado com a proposta prática do ebook, especialmente no plano de ação de 21 dias, no checklist de alta performance, na formação de hábitos e na ideia de transformar conhecimento em execução. O PDF propõe semanas de limpeza, foco e consolidação de identidade, o que se conecta diretamente à lógica de desafios práticos por tempo determinado.",
-    "status": "Não citado como fonte de produção/pesquisa. Seus princípios e ideias estão alinhados com temas presentes no ebook.",
-    "testemunho": "Matt Cutts popularizou a ideia de experimentar algo novo por 30 dias. Seu exemplo reforça que mudanças podem começar com ciclos curtos, simples e mensuráveis, capazes de tirar a pessoa da inércia e criar novas experiências."
-  }
-];
+    const refs = [
+      [
+        "James Clear",
+        "Pequenas melhorias diárias, identidade e construção de hábitos.",
+        "Aplicado como método para sair do excesso de intenção e construir consistência por meio de ações simples repetidas.",
+        "Citado como fonte de produção e pesquisa."
+      ],
+      [
+        "Dave Brailsford",
+        "Ganhos marginais: melhorar pequenos detalhes até gerar resultado extraordinário.",
+        "Reforça a lógica de evolução progressiva, onde pequenas decisões acumuladas mudam o desempenho.",
+        "Citado como fonte de produção e pesquisa."
+      ],
+      [
+        "Mel Robbins",
+        "Romper a hesitação e agir antes que a mente racionalize a desistência.",
+        "Conecta-se à procrastinação, primeiro passo, ação rápida e execução antes da motivação aparecer.",
+        "Princípios alinhados ao conteúdo."
+      ],
+      [
+        "Tim Ferriss",
+        "Foco, eliminação, clareza e ação estratégica.",
+        "Aplicado na redução de distrações, escolha do que importa e execução com prioridade.",
+        "Citado como fonte de produção e pesquisa."
+      ],
+      [
+        "Brené Brown",
+        "Vulnerabilidade, coragem, conexão e liderança humana.",
+        "Aparece na construção de uma liderança consciente, madura e menos baseada em aparência.",
+        "Citada como fonte de produção e pesquisa."
+      ],
+      [
+        "Eric Ries",
+        "Mentalidade enxuta, MVP, validação e aprendizado rápido.",
+        "Mostra como testar ideias, medir respostas e ajustar ações antes de desperdiçar energia.",
+        "Citado como fonte de produção e pesquisa."
+      ],
+      [
+        "Drew Houston",
+        "Validação prática, foco no usuário e aprendizado antes de escalar.",
+        "Conecta-se à ideia de transformar planos em experimentos e validar antes de investir demais.",
+        "Princípios alinhados ao conteúdo."
+      ],
+      [
+        "Brian Chesky",
+        "Criatividade sob pressão, persistência e execução em ambiente incerto.",
+        "Reforça a importância de agir com recursos limitados, testar caminhos e adaptar a estratégia.",
+        "Princípios alinhados ao conteúdo."
+      ],
+      [
+        "Sara Blakely",
+        "Ressignificação do fracasso, coragem para tentar e melhoria contínua.",
+        "Apoia a visão de que falhas fazem parte do processo de execução, ajuste e crescimento.",
+        "Princípios alinhados ao conteúdo."
+      ],
+      [
+        "Jia Jiang",
+        "Exposição ao desconforto, resiliência emocional e treino contra o medo.",
+        "Conecta-se ao domínio emocional, ação apesar do medo e transformação do desconforto em aprendizado.",
+        "Princípios alinhados ao conteúdo."
+      ],
+      [
+        "Matt Cutts",
+        "Desafios curtos, ciclos de execução e formação de hábitos.",
+        "Relaciona-se ao plano prático de aplicação, aos ciclos de ação e à construção de consistência.",
+        "Princípios alinhados ao conteúdo."
+      ]
+    ];
 
-    const track = document.getElementById("carouselTrack");
-    const dots = document.getElementById("dots");
-    const counter = document.getElementById("counter");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const relationModal = document.getElementById("relationModal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
-    const modalClose = document.getElementById("modalClose");
+    const tr = document.getElementById("track");
+    const ds = document.getElementById("dots");
+    const ct = document.getElementById("count");
 
-    let currentIndex = 0;
+    let i = 0;
 
-    function createSlide(item, index) {
-      const slide = document.createElement("article");
-      slide.className = "carousel-slide";
-      slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
+    refs.forEach((r, n) => {
+      tr.innerHTML += `
+        <article class="slide">
+          <div class="grid">
+            <div class="main">
+              <span class="tag">Princípio aplicado no Manual</span>
+              <h2>${r[1]}</h2>
+              <p>${r[2]}</p>
+            </div>
 
-      slide.innerHTML = `
-        <div class="photo-wrap">
-          <img src="${item.imagem}" alt="Foto de ${item.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <div class="photo-fallback" style="display:none;">
-            Envie a imagem para o GitHub e ajuste o caminho:<br><strong>${item.imagem}</strong>
+            <div class="side">
+              <div class="chip">
+                Referência conceitual: <b>${r[0]}</b>
+              </div>
+
+              <div class="box">
+                <b>Status no material</b>
+                <p>${r[3]}</p>
+              </div>
+
+              <div class="box">
+                <b>Como ler esta seção</b>
+                <p>Esta referência não substitui o método do Manual. Ela apenas mostra a base conceitual usada para organizar um caminho prático de execução.</p>
+              </div>
+
+              <div class="note">
+                O foco não está na biografia dos autores, mas nos princípios aplicados ao Código da Alta Performance.
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="content">
-          <p class="eyebrow">REFERÊNCIAS QUE NOS INSPIRAM</p>
-          <h2>${item.nome}</h2>
-
-          <div class="section">
-            <strong>Princípio presente no ebook</strong>
-            <p>${item.principio}</p>
-          </div>
-
-          <div class="section status-section">
-            <strong>Status no ebook</strong>
-            <p>${item.status}</p>
-          </div>
-
-          <div class="section">
-            <strong>Quem é?</strong>
-            <p>${item.testemunho}</p>
-          </div>
-
-          <button class="relation-btn" type="button" data-index="${index}">Ver relação com o ebook</button>
-        </div>
+        </article>
       `;
 
-      return slide;
-    }
-
-    function renderCarousel() {
-      testemunhos.forEach((item, index) => {
-        track.appendChild(createSlide(item, index));
-
-        const dot = document.createElement("button");
-        dot.className = index === 0 ? "dot active" : "dot";
-        dot.type = "button";
-        dot.setAttribute("aria-label", `Ir para o slide ${index + 1}`);
-        dot.addEventListener("click", () => goToSlide(index));
-        dots.appendChild(dot);
-      });
-
-      updateCarousel();
-    }
-
-    function updateCarousel() {
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      [...track.children].forEach((slide, index) => {
-        slide.setAttribute("aria-hidden", index === currentIndex ? "false" : "true");
-      });
-
-      [...dots.children].forEach((dot, index) => {
-        dot.classList.toggle("active", index === currentIndex);
-      });
-
-      counter.textContent = `${currentIndex + 1} / ${testemunhos.length}`;
-    }
-
-    function goToSlide(index) {
-      currentIndex = (index + testemunhos.length) % testemunhos.length;
-      updateCarousel();
-    }
-
-
-    function openRelation(index) {
-      const item = testemunhos[index];
-      if (!item) return;
-      modalTitle.textContent = item.nome;
-      modalText.textContent = item.relacao;
-      relationModal.classList.add("open");
-      relationModal.setAttribute("aria-hidden", "false");
-    }
-
-    function closeRelation() {
-      relationModal.classList.remove("open");
-      relationModal.setAttribute("aria-hidden", "true");
-    }
-
-    document.addEventListener("click", (event) => {
-      const relationButton = event.target.closest(".relation-btn");
-      if (relationButton) {
-        openRelation(Number(relationButton.dataset.index));
-        return;
-      }
-
-      if (event.target === relationModal || event.target === modalClose) {
-        closeRelation();
-      }
+      const b = document.createElement("button");
+      b.className = "dot";
+      b.type = "button";
+      b.setAttribute("aria-label", `Ir para referência ${n + 1}`);
+      b.onclick = () => go(n);
+      ds.appendChild(b);
     });
 
-    prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
-    nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+    function up() {
+      tr.style.transform = `translateX(-${i * 100}%)`;
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeRelation();
-      if (event.key === "ArrowLeft") goToSlide(currentIndex - 1);
-      if (event.key === "ArrowRight") goToSlide(currentIndex + 1);
-    });
+      [...ds.children].forEach((d, n) => {
+        d.classList.toggle("on", n === i);
+      });
 
-    let touchStartX = 0;
-    let touchEndX = 0;
+      ct.textContent = `${i + 1} / ${refs.length}`;
+    }
 
-    track.addEventListener("touchstart", (event) => {
-      touchStartX = event.changedTouches[0].screenX;
+    function go(n) {
+      i = (n + refs.length) % refs.length;
+      up();
+    }
+
+    document.getElementById("prev").onclick = () => go(i - 1);
+    document.getElementById("next").onclick = () => go(i + 1);
+
+    let sx = 0;
+
+    tr.addEventListener("touchstart", e => {
+      sx = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    track.addEventListener("touchend", (event) => {
-      touchEndX = event.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
+    tr.addEventListener("touchend", e => {
+      const dx = sx - e.changedTouches[0].screenX;
 
-      if (Math.abs(diff) > 45) {
-        if (diff > 0) goToSlide(currentIndex + 1);
-        else goToSlide(currentIndex - 1);
+      if (Math.abs(dx) > 45) {
+        go(i + (dx > 0 ? 1 : -1));
       }
     }, { passive: true });
 
-    renderCarousel();
+    up();
   </script>
 </body>
 </html>
