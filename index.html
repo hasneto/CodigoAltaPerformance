@@ -6,343 +6,357 @@
   <title>Referências Conceituais</title>
 
   <style>
-    :root {
-      --bg: #191919;
-      --gold: #d6b25e;
-      --muted: #cfcfcf;
-      --line: rgba(255,255,255,.10);
-    }
+  :root {
+    --bg: #191919;
+    --gold: #d6b25e;
+    --muted: #cfcfcf;
+    --line: rgba(255,255,255,.10);
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: #191919 !important;
+    overflow: hidden !important;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #fff;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1080px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 12px 10px;
+    background: #191919;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .shell {
+    position: relative;
+    width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    background: #191919;
+  }
+
+  .track {
+    display: flex;
+    transition: .4s transform;
+  }
+
+  .slide {
+    min-width: 100%;
+    padding: 28px 42px 20px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 22px;
+    align-items: center;
+  }
+
+  .main {
+    border: 1px solid rgba(214,178,94,.30);
+    background: linear-gradient(135deg, rgba(214,178,94,.13), rgba(255,255,255,.035));
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .tag {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 7px 11px;
+    border: 1px solid rgba(214,178,94,.35);
+    border-radius: 999px;
+    background: rgba(214,178,94,.13);
+    color: #f4d98c;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: clamp(26px, 3.6vw, 42px);
+    line-height: 1.04;
+    letter-spacing: -.04em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: clamp(15px, 1.6vw, 18px);
+    line-height: 1.46;
+  }
+
+  .side {
+    display: grid;
+    gap: 12px;
+  }
+
+  .chip {
+    width: max-content;
+    max-width: 100%;
+    padding: 7px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: #aaa;
+    background: rgba(255,255,255,.04);
+    font-size: 12px;
+  }
+
+  .chip b {
+    color: #d4d4d4;
+  }
+
+  .box {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(255,255,255,.045);
+    padding: 14px;
+  }
+
+  .box b {
+    display: block;
+    color: #f1cf78;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    margin-bottom: 6px;
+  }
+
+  .box p {
+    font-size: 14px;
+    line-height: 1.42;
+  }
+
+  .note {
+    color: #999;
+    font-size: 11.5px;
+    line-height: 1.35;
+    border-top: 1px solid var(--line);
+    padding-top: 9px;
+  }
+
+  .btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(17,17,17,.76);
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    z-index: 5;
+  }
+
+  .prev {
+    left: 8px;
+  }
+
+  .next {
+    right: 8px;
+  }
+
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 42px 16px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 99px;
+    background: rgba(255,255,255,.25);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .dot.on {
+    width: 26px;
+    background: var(--gold);
+  }
+
+  .count {
+    font-size: 13px;
+    color: #999;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
     html,
     body {
-      margin: 0;
-      width: 100%;
-      height: 760px;
-      min-height: 760px;
-      background: #191919 !important;
-      overflow: hidden;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #fff;
+      height: 100vh;
+      overflow: hidden !important;
     }
 
     .wrap {
-      max-width: 1080px;
-      height: 760px;
-      min-height: 760px;
-      margin: auto;
-      padding: 34px 12px;
-      background: #191919;
-      display: flex;
+      height: 100vh;
+      padding: 6px;
       align-items: center;
-      justify-content: center;
     }
 
     .shell {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: #191919;
-    }
-
-    .track {
-      display: flex;
-      transition: .4s transform;
+      border-radius: 18px;
     }
 
     .slide {
-      min-width: 100%;
-      padding: 42px 48px 34px;
+      padding: 14px 14px 10px;
     }
 
     .grid {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 26px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 9px;
     }
 
     .main {
-      border: 1px solid rgba(214,178,94,.30);
-      background: linear-gradient(135deg, rgba(214,178,94,.13), rgba(255,255,255,.035));
-      border-radius: 20px;
-      padding: 30px;
+      padding: 14px;
+      border-radius: 16px;
     }
 
     .tag {
-      display: inline-block;
-      margin: 0 0 14px;
-      padding: 7px 11px;
-      border: 1px solid rgba(214,178,94,.35);
-      border-radius: 999px;
-      background: rgba(214,178,94,.13);
-      color: #f4d98c;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      font-size: 9px;
+      padding: 5px 8px;
+      margin-bottom: 8px;
     }
 
     h2 {
-      margin: 0 0 14px;
-      font-size: clamp(28px, 4vw, 46px);
-      line-height: 1.04;
-      letter-spacing: -.04em;
+      font-size: clamp(23px, 7.2vw, 32px);
+      line-height: 1.02;
+      margin-bottom: 8px;
     }
 
     p {
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(16px, 1.8vw, 20px);
-      line-height: 1.52;
+      font-size: 13.5px;
+      line-height: 1.34;
     }
 
     .side {
-      display: grid;
-      gap: 14px;
+      gap: 8px;
     }
 
     .chip {
-      width: max-content;
-      max-width: 100%;
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: #aaa;
-      background: rgba(255,255,255,.04);
-      font-size: 12px;
-    }
-
-    .chip b {
-      color: #d4d4d4;
+      font-size: 10.5px;
+      padding: 6px 9px;
     }
 
     .box {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,.045);
-      padding: 16px;
+      padding: 10px;
+      border-radius: 14px;
     }
 
     .box b {
-      display: block;
-      color: #f1cf78;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      margin-bottom: 6px;
+      font-size: 10.5px;
+      margin-bottom: 4px;
     }
 
     .box p {
-      font-size: 15px;
-      line-height: 1.45;
+      font-size: 12.5px;
+      line-height: 1.32;
     }
 
     .note {
-      color: #999;
-      font-size: 12px;
-      line-height: 1.4;
-      border-top: 1px solid var(--line);
-      padding-top: 10px;
+      font-size: 10px;
+      line-height: 1.25;
+      padding-top: 6px;
     }
 
     .btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: rgba(17,17,17,.76);
-      color: #fff;
-      font-size: 25px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      z-index: 5;
+      width: 34px;
+      height: 34px;
+      font-size: 22px;
     }
 
     .prev {
-      left: 10px;
+      left: 4px;
     }
 
     .next {
-      right: 10px;
+      right: 4px;
     }
 
     .foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 48px 28px;
-    }
-
-    .dots {
-      display: flex;
-      gap: 7px;
-      flex-wrap: wrap;
+      padding: 0 14px 10px;
     }
 
     .dot {
-      width: 8px;
-      height: 8px;
-      border: 0;
-      border-radius: 99px;
-      background: rgba(255,255,255,.25);
-      cursor: pointer;
-      padding: 0;
+      width: 6px;
+      height: 6px;
     }
 
     .dot.on {
-      width: 26px;
-      background: var(--gold);
+      width: 20px;
     }
 
     .count {
+      font-size: 11px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .slide {
+      padding: 12px 12px 8px;
+    }
+
+    .main {
+      padding: 12px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 6.8vw, 29px);
+    }
+
+    p {
       font-size: 13px;
-      color: #999;
-      white-space: nowrap;
+      line-height: 1.3;
     }
 
-    @media (max-width: 760px) {
-      html,
-      body {
-        height: 940px;
-        min-height: 940px;
-        overflow: hidden;
-      }
-
-      .wrap {
-        height: 940px;
-        min-height: 940px;
-        padding: 28px 8px;
-        align-items: center;
-      }
-
-      .shell {
-        border-radius: 20px;
-      }
-
-      .slide {
-        padding: 30px 18px 22px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .main {
-        padding: 22px;
-        border-radius: 18px;
-      }
-
-      .tag {
-        font-size: 10px;
-        padding: 6px 9px;
-        margin-bottom: 12px;
-      }
-
-      h2 {
-        font-size: clamp(30px, 8.6vw, 42px);
-        margin-bottom: 12px;
-      }
-
-      p {
-        font-size: 16px;
-        line-height: 1.46;
-      }
-
-      .side {
-        gap: 13px;
-      }
-
-      .box {
-        padding: 15px;
-      }
-
-      .box p {
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .note {
-        font-size: 11px;
-        line-height: 1.42;
-      }
-
-      .btn {
-        width: 38px;
-        height: 38px;
-        font-size: 24px;
-      }
-
-      .prev {
-        left: 6px;
-      }
-
-      .next {
-        right: 6px;
-      }
-
-      .foot {
-        padding: 0 18px 22px;
-      }
-
-      .dot {
-        width: 7px;
-        height: 7px;
-      }
-
-      .dot.on {
-        width: 22px;
-      }
+    .box {
+      padding: 9px;
     }
 
-    @media (max-width: 420px) {
-      html,
-      body {
-        height: 980px;
-        min-height: 980px;
-      }
-
-      .wrap {
-        height: 980px;
-        min-height: 980px;
-        padding: 28px 7px;
-      }
-
-      .slide {
-        padding: 28px 16px 22px;
-      }
-
-      .main {
-        padding: 20px;
-      }
-
-      h2 {
-        font-size: clamp(30px, 8.8vw, 40px);
-      }
-
-      p {
-        font-size: 15.5px;
-      }
-
-      .box p {
-        font-size: 13.8px;
-      }
-
-      .foot {
-        padding: 0 16px 22px;
-      }
+    .box p {
+      font-size: 12px;
+      line-height: 1.28;
     }
-  </style>
+
+    .note {
+      font-size: 9.5px;
+    }
+
+    .foot {
+      padding: 0 12px 8px;
+    }
+  }
+</style>
 </head>
 
 <body>
