@@ -18,20 +18,27 @@
     }
 
     html,
-    body {
-      margin: 0;
-      background: #191919 !important;
-      overflow: hidden;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #fff;
-    }
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 760px;
+  background: #191919 !important;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #fff;
+}
 
-    .wrap {
-      max-width: 1080px;
-      margin: auto;
-      padding: 16px 10px;
-      background: #191919;
-    }
+.wrap {
+  max-width: 1080px;
+  min-height: 760px;
+  margin: auto;
+  padding: 34px 12px;
+  background: #191919;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
     .shell {
       position: relative;
@@ -202,6 +209,18 @@
     }
 
     @media (max-width: 760px) {
+	html,
+body {
+  min-height: 880px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.wrap {
+  min-height: 880px;
+  padding: 28px 8px;
+  align-items: flex-start;
+}
       .wrap {
         padding: 8px 6px;
       }
