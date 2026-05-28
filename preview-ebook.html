@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrossel de Imagens do Ebook</title>
+  <style>
+    :root {
+      --bg: #191919;
+      --border: rgba(255, 255, 255, 0.12);
+      --gold: #d6b25e;
+      --muted: rgba(255, 255, 255, 0.62);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg) !important;
+      overflow-x: hidden;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .ebook-carousel-widget {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 12px;
+      background: var(--bg);
+    }
+
+    .ebook-carousel-shell {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+    }
+
+    .ebook-carousel-track {
+      display: flex;
+      transition: transform 420ms ease;
+      will-change: transform;
+    }
+
+    .ebook-carousel-slide {
+      min-width: 100%;
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+
+    .ebook-image-frame {
+      width: 100%;
+      max-width: 980px;
+      height: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #111111;
+      border: 1px solid var(--border);
+    }
+
+    .ebook-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #111111;
+    }
+
+    .image-fallback {
+      display: none;
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(17, 17, 17, 0.74);
+      color: #ffffff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      line-height: 1;
+      backdrop-filter: blur(10px);
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-50%) scale(1.05);
+      background: rgba(214, 178, 94, 0.22);
+      border-color: rgba(214, 178, 94, 0.55);
+    }
+
+    .prev { left: 18px; }
+    .next { right: 18px; }
+
+    .carousel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 28px 24px;
+      background: var(--bg);
+    }
+
+    .dots {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.26);
+      cursor: pointer;
+      padding: 0;
+      transition: width 220ms ease, background 220ms ease;
+    }
+
+    .dot.active {
+      width: 30px;
+      background: var(--gold);
+    }
+
+    .counter {
+      color: var(--muted);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 760px) {
+      .ebook-carousel-widget {
+        padding: 20px 8px;
+      }
+
+      .ebook-carousel-shell {
+        border-radius: 18px;
+      }
+
+      .ebook-carousel-slide {
+        padding: 18px 14px;
+      }
+
+      .ebook-image-frame {
+        height: 520px;
+        border-radius: 14px;
+      }
+
+      .nav-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 26px;
+      }
+
+      .prev { left: 8px; }
+      .next { right: 8px; }
+
+      .carousel-footer {
+        padding: 0 16px 18px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+      }
+
+      .dot.active {
+        width: 26px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .ebook-carousel-widget {
+        padding: 16px 6px;
+      }
+
+      .ebook-carousel-slide {
+        padding: 14px 10px;
+      }
+
+      .ebook-image-frame {
+        height: 470px;
+      }
+
+      .nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 24px;
+      }
+
+      .counter {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="ebook-carousel-widget" aria-label="Carrossel de imagens do interior do ebook">
+    <section class="ebook-carousel-shell">
+      <div class="ebook-carousel-track" id="carouselTrack"></div>
+
+      <button class="nav-btn prev" type="button" aria-label="Imagem anterior" id="prevBtn">‹</button>
+      <button class="nav-btn next" type="button" aria-label="Próxima imagem" id="nextBtn">›</button>
+
+      <div class="carousel-footer">
+        <div class="dots" id="dots" aria-label="Navegação do carrossel"></div>
+        <div class="counter" id="counter"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const imagens = [
+      {
+        nome: "Capa e índice",
+        src: "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/capa_indice1.jpeg"
+      },
+      {
+        nome: "Índice 2",
+        src: "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/indice2.jpeg"
+      },
+      {
+        nome: "Índice 3",
+        src: "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/indice3.jpeg"
+      },
+      {
+        nome: "Índice 4",
+        src: "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/indice4.jpeg"
+      },
+      {
+        nome: "Plano de 21 dias",
+        src: "https://raw.githubusercontent.com/hasneto/CodigoAltaPerformance/main/plano-21-dias.jpeg"
+      }
+    ];
+
+    const track = document.getElementById("carouselTrack");
+    const dots = document.getElementById("dots");
+    const counter = document.getElementById("counter");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+
+    function createSlide(item, index) {
+      const slide = document.createElement("article");
+      slide.className = "ebook-carousel-slide";
+      slide.setAttribute("aria-hidden", index === 0 ? "false" : "true");
+
+      slide.innerHTML = `
+        <div class="ebook-image-frame">
+          <img src="${item.src}" alt="${item.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="image-fallback">
+            Imagem não encontrada.<br>
+            Verifique se o arquivo está no GitHub com este nome:<br>
+            <strong>${item.src}</strong>
+          </div>
+        </div>
+      `;
+
+      return slide;
+    }
+
+    function renderCarousel() {
+      imagens.forEach((item, index) => {
+        track.appendChild(createSlide(item, index));
+
+        const dot = document.createElement("button");
+        dot.className = index === 0 ? "dot active" : "dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Ir para imagem ${index + 1}`);
+        dot.addEventListener("click", () => goToSlide(index));
+        dots.appendChild(dot);
+      });
+
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      [...track.children].forEach((slide, index) => {
+        slide.setAttribute("aria-hidden", index === currentIndex ? "false" : "true");
+      });
+
+      [...dots.children].forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentIndex);
+      });
+
+      counter.textContent = `${currentIndex + 1} / ${imagens.length}`;
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + imagens.length) % imagens.length;
+      updateCarousel();
+    }
+
+    prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
+    nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") goToSlide(currentIndex - 1);
+      if (event.key === "ArrowRight") goToSlide(currentIndex + 1);
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    track.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (event) => {
+      touchEndX = event.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 45) {
+        if (diff > 0) goToSlide(currentIndex + 1);
+        else goToSlide(currentIndex - 1);
+      }
+    }, { passive: true });
+
+    renderCarousel();
+  </script>
+</body>
+</html>
